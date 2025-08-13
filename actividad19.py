@@ -26,3 +26,9 @@ class Relleno:
             print("El sabor del relleno no puede estar vacio")
     def describir_relleno(self):
         return f"Relleno sabor a {self.sabor_relleno}"
+class GalletarRelleno(Galleta,Relleno):
+    def __init__(self,nombre,precio,peso,sabor_relleno):
+        Galleta.__init__(self,nombre,precio,peso)
+        Relleno.__init__(self,sabor_relleno)
+    def mostrar_info(self):
+        return super().mostrar_info()+ f"|{self.describir_relleno()}"
