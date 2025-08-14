@@ -13,7 +13,7 @@ class Galleta:
         return f"Galleta: {self.nombre}|Precio: {self.precio}|Peso: {self.peso}"
 class GalletaChispas(Galleta):
     def __init__(self,nombre,precio,peso,cantidad_chispas):
-        super.__init__(nombre,precio,peso)
+        super().__init__(nombre,precio,peso)
         self.cantidad_chispas=cantidad_chispas
         if cantidad_chispas <0:
             print("La cantidad de chispas no puede ser negativa")
@@ -70,7 +70,37 @@ class InventarioGalletas():
         nombre= input("Ingrese el nombre a eliminar: ")
         for g in self.galletas:
             if g.nombre.lower() == nombre.lower():
-                self.galletas.remove(nombre)
+                self.galletas.remove(g)
                 print("Galleta eliminada")
-            else:
-                print("Galleta no encontrada")
+                return
+        else:
+            print("Galleta no encontrada")
+inventario= InventarioGalletas()
+while True:
+    print("----MENU----")
+    print("1. Registrar galleta básica")
+    print("2. Registrar galleta con chispas")
+    print("3. Registrar galleta con relleno")
+    print("4. Listar galletas")
+    print("5. Buscar galleta por nombre")
+    print("6. Eliminar galleta por nombre")
+    print("7. Salir")
+    opcion = input("Ingrese una de las opciones: ")
+    match opcion:
+        case "1":
+            inventario.registrar_galleta("basica")
+        case "2":
+            inventario.registrar_galleta("chispas")
+        case "3":
+            inventario.registrar_galleta("rellena")
+        case "4":
+            inventario.listar_galletas()
+        case "5":
+            inventario.buscar_por_nombre()
+        case "6":
+            inventario.eliminar_por_nombre()
+        case "7":
+            print("Saliendo del programa...")
+            break
+        case _:
+            print("Opcion invalida. Ingrese una opcion valida")
